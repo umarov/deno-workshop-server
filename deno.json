@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net --allow-env --unstable-kv --watch main.ts"
+  },
+  "imports": {
+    "@oak/acorn": "jsr:@oak/acorn@^1.1.1",
+    "@std/assert": "jsr:@std/assert@1"
+  }
+}
