@@ -1,4 +1,4 @@
-import { Router, v } from "@oak/acorn";
+import { RouteParameters, Router, v } from "@oak/acorn";
 const kv = await Deno.openKv();
 
 const router = new Router({ logger: { console: { level: "INFO" } } });
@@ -53,6 +53,10 @@ router.get("/calls/:id/agents", async ({ params }) => {
   const agents = await getAgents(params);
 
   return { agents };
+});
+
+router.get("/test/calls/:id/agents", () => {
+  return { agent: "Test Agent", from: "Server" };
 });
 
 router.get("/stream/calls/:id/agents", ({ params }) => {
@@ -122,7 +126,7 @@ async function getAgents(params: RouteParameters<Path>) {
     urls.map((url) =>
       fetch(`${url}/calls/${id}/agents`, {
         headers: { "Content-Type": "application/json" },
-      }),
+      })
     ),
   );
 
